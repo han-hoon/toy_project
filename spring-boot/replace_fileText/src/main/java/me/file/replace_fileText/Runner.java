@@ -1,4 +1,4 @@
-package me.file.change_domain.change_domin;
+package me.file.replace_fileText;
 
 import org.mozilla.universalchardet.UniversalDetector;
 import org.slf4j.Logger;
@@ -26,13 +26,14 @@ public class Runner implements ApplicationRunner {
         String[] sourceArgs = null;
         try {
             sourceArgs = args.getSourceArgs();
-            setTargetString(sourceArgs[0]);
-            setNewString(sourceArgs[1]);
             setExtension(
-                    sourceArgs[2].startsWith(".") ? sourceArgs[2] : "." + sourceArgs[2]
+                    sourceArgs[0].startsWith(".") ? sourceArgs[0] : "." + sourceArgs[0]
             );
+            setTargetString(sourceArgs[1]);
+            setNewString(sourceArgs[2]);
         } catch (Exception e) {
             logger.error("인자 값이 충분하지 않습니다.");
+            logger.error("입력 예시) java -jar replace_fileText-0.0.1.jar txt text01 text02");
             throw new Exception();
         }
         updateChildDirectoryFile("./");
@@ -47,14 +48,14 @@ public class Runner implements ApplicationRunner {
                 updateChildDirectoryFile(file.getAbsolutePath());
             } else if(file.getName().endsWith(extension)) {
                 logger.info("fileName : " + file.getName());
-                changeText(file);
+                replaceText(file);
             }
         }
         logger.info("========================================");
         logger.info("");
     }
 
-    private void changeText(File file) throws IOException {
+    private void replaceText(File file) throws IOException {
         BufferedReader br = null;
         PrintWriter pw = null;
         int lineCount = 0;

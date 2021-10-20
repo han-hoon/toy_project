@@ -1,13 +1,13 @@
-package me.file.change_domain.change_domin;
+package me.file.replace_fileText;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication
-public class ChangeDominApplication {
+public class ReplaceFileTextApplication {
 
     public static void main(String[] args) {
-        SpringApplication.run(ChangeDominApplication.class, args);
+        SpringApplication.run(ReplaceFileTextApplication.class, args);
     }
 
 }
